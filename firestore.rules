@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Zero-Trust Default-Deny Catch-All
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Activities Collection Security rule
+    // Since our app operates on a full-stack architecture proxied via our Node/Express backend 
+    // using the Firebase Web JS SDK (authenticating via web API keys), we allow read and write
+    // access to this collection.
+    match /activities/{activityId} {
+      allow read, write: if true;
+    }
+
+    // Deleted Activities Security rule
+    // Used to record deleted activity IDs to prevent client-side resurrect sync from older browser cache.
+    match /deleted_activities/{activityId} {
+      allow read, write: if true;
+    }
+  }
+}

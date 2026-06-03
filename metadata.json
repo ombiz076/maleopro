@@ -1,0 +1,8 @@
+{
+  "name": "SIAAP LAPOR",
+  "description": "Sistem Pelaporan Kegiatan / Perjalanan Kedinasan",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

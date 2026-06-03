@@ -1,0 +1,108 @@
+{
+  "entities": {
+    "kegiatan": {
+      "title": "Kegiatan",
+      "description": "Laporan kegiatan dinas harian pegawai",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID unik kegiatan"
+        },
+        "namaPelaksana": {
+          "type": "string",
+          "description": "Nama pelaksana kegiatan"
+        },
+        "jabatan": {
+          "type": "string",
+          "description": "Jabatan pelaksana kegiatan"
+        },
+        "nip": {
+          "type": "string",
+          "description": "NIP pelaksana kegiatan"
+        },
+        "judulKegiatan": {
+          "type": "string",
+          "description": "Judul kegiatan dinas"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Tanggal mulai kegiatan (YYYY-MM-DD)"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "Tanggal selesai kegiatan (YYYY-MM-DD)"
+        },
+        "startTime": {
+          "type": "string",
+          "description": "Waktu mulai kegiatan (HH:MM)"
+        },
+        "endTime": {
+          "type": "string",
+          "description": "Waktu selesai kegiatan (HH:MM)"
+        },
+        "lokasi": {
+          "type": "string",
+          "description": "Lokasi kegiatan"
+        },
+        "tanggalLapor": {
+          "type": "string",
+          "description": "Tanggal pelaporan kegiatan"
+        },
+        "regulasi": {
+          "type": "array",
+          "description": "Daftar rujukan regulasi daerah"
+        },
+        "resumeOriginal": {
+          "type": "string",
+          "description": "Poin-poin mentah kegiatan"
+        },
+        "resumeGenerated": {
+          "type": "string",
+          "description": "Rangkuman jurnalistik formal hasil AI"
+        },
+        "images": {
+          "type": "array",
+          "description": "Daftar dokumentasi foto kegiatan (base64 atau url)"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Draft",
+            "Terlapor"
+          ],
+          "description": "Status laporan kegiatan"
+        }
+      },
+      "required": [
+        "namaPelaksana",
+        "judulKegiatan",
+        "lokasi",
+        "tanggalLapor"
+      ]
+    }
+  },
+  "firestore": {
+    "activities": {
+      "schema": "entities.kegiatan",
+      "description": "Koleksi seluruh laporan kegiatan dinas harian"
+    },
+    "deleted_activities": {
+      "schema": {
+        "title": "DeletedActivity",
+        "description": "Daftar ID laporan kegiatan yang telah dihapus permanen oleh administrator untuk mencegah sinkronisasi ulang dari browser lama",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "deletedAt"]
+      },
+      "description": "Koleksi pencatatan ID kegiatan yang dihapus guna mencegah sinkronisasi balik (resurrect) dari browser lawas berkelanjutan"
+    }
+  }
+}
